@@ -1,5 +1,6 @@
 const getPixels = require('get-pixels');
 const zlib = require('zlib');
+const bops = require('bops');
 
 const mapCode = {
   // normal
@@ -190,7 +191,7 @@ function convertImageToMonochrome(image, options) {
   }
 
   return {
-    buffer: Buffer.from(buffer),
+    buffer: bops.from(buffer),
     width: imageWidth,
     height: image.bitmap.height
   };
@@ -377,7 +378,7 @@ function decodeZ64(data) {
   // trim trailing crc
   data = data.substring(0, data.length - 5);
 
-  const deflatedData = Buffer.from(data, 'base64');
+  const deflatedData = bops.from(data, 'base64');
   const buffer = zlib.inflateSync(deflatedData);
   return buffer;
 }
