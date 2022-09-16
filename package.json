@@ -28,7 +28,8 @@
   },
   "homepage": "https://github.com/ReplyTechnologies/zpl-image-convert#readme",
   "dependencies": {
-    "bops": "^1.0.1"
+    "bops": "^1.0.1",
+    "pako": "^2.0.4"
   },
   "devDependencies": {
     "jest": "^27.5.0"

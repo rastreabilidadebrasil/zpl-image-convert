@@ -1,4 +1,5 @@
-const zlib = require('zlib');
+import { from as BopsFrom } from 'bops';
+import { inflate as PakoInflate } from 'pako';
 
 const pivotedMapCode = {
   // pivoted
@@ -76,8 +77,8 @@ function decodeZ64(data) {
   // trim trailing crc
   data = data.substring(0, data.length - 5);
 
-  const deflatedData = Buffer.from(data, 'base64');
-  const buffer = zlib.inflateSync(deflatedData);
+  const deflatedData = BopsFrom(data, 'base64');
+  const buffer = PakoInflate(deflatedData);
   return buffer;
 }
 
@@ -145,6 +146,6 @@ function getMapCodeCount(code) {
   return value;
 }
 
-module.exports = {
+export default {
   decode,
 };
